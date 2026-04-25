@@ -5,9 +5,14 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-<header class="bg-blue-700">
-    <a class="bg-green-400">Log in</a>
-    <a class="bg-blue-200">Register</a>
+<header>
+    <nav class="h-12 bg-black flex items-center px-6">
+        <a class="text-lg text-white">Task Manager</a>
+        <div class="ml-auto flex gap-4">
+            <a class="text-lg text-white" href="{{route('login')}}">Log in</a>
+            <a class="text-lg text-white" href="{{route('register')}}">Register</a>
+        </div>
+    </nav>
 </header>
 <main>
     @yield('content')

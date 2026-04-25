@@ -7,3 +7,6 @@ Route::get('/', function () {
     return view('pages.welcome');
 });
 
+
+
+require __DIR__.'/auth.php';
