@@ -14,6 +14,16 @@
                 <a class="text-lg text-white" href="{{route('register')}}">Register</a>
             </div>
         @endif
+        @if(request()->routeIs('login'))
+            <div class="ml-auto flex gap-4">
+                <a class="text-lg text-white" href="{{route('register')}}">Register</a>
+            </div>
+        @endif
+        @if(request()->routeIs('register'))
+            <div class="ml-auto flex gap-4">
+                <a class="text-lg text-white" href="{{route('login')}}">Log in</a>
+            </div>
+        @endif
     </nav>
 </header>
 <main>
