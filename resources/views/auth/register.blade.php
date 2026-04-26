@@ -14,8 +14,8 @@
     <form action="{{ route('register') }}" method="POST" class="mt-52 border-2  border-black">
         @csrf
         <div class="m-10 text-center">
-            <label for="name">Name</label>
-            <input id="name" type="text" name="name" class="ml-10">
+            <label for="username">Username</label>
+            <input id="username" type="text" name="username" class="ml-10">
         </div>
         <div class="m-10 text-center">
             <label for="email">Email</label>

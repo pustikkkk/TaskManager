@@ -5,8 +5,8 @@
 <form action="{{ route('login') }}" method="POST" class="mt-52 border-2  border-black">
     @csrf
     <div class="m-10 text-center">
-        <label for="email">Username</label>
-        <input id="email" type="email" name="email" class="ml-10">
+        <label for="username">Username</label>
+        <input id="username" type="text" name="username" class="ml-10">
     </div>
     <div class="m-10 text-center">
         <label for="password">Password</label>
