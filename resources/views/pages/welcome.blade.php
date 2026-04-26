@@ -1,6 +1,6 @@
 @extends('layouts.guest')
 
-@section('title', 'Login')
+@section('title', 'Welcome')
 
 @section('content')
     <h1 class="text-4xl font-bold m-4 text-center">Stay Organized. Get Things Done.</h1>
