@@ -7,11 +7,13 @@
 <body>
 <header>
     <nav class="h-12 bg-black flex items-center px-6">
-        <a class="text-lg text-white">Task Manager</a>
-        <div class="ml-auto flex gap-4">
-            <a class="text-lg text-white" href="{{route('login')}}">Log in</a>
-            <a class="text-lg text-white" href="{{route('register')}}">Register</a>
-        </div>
+        <a href="{{route('welcome')}}" class="text-lg text-white">Task Manager</a>
+        @if (request()->routeIs('welcome'))
+            <div class="ml-auto flex gap-4">
+                <a class="text-lg text-white" href="{{route('login')}}">Log in</a>
+                <a class="text-lg text-white" href="{{route('register')}}">Register</a>
+            </div>
+        @endif
     </nav>
 </header>
 <main>
