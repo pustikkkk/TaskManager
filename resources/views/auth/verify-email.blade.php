@@ -5,6 +5,6 @@
 @section('content')
     <div class="border border-black">
         <p>You have successfully registered!</p>
-        <p>Please, verify your email to continue!</p>
+        <p>A verification link has been sent to: <strong>{{ request()->user()->email }}</strong></p>
     </div>
 @endsection

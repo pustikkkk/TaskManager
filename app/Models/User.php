@@ -35,4 +35,8 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $this->notify(new CustomVerifyEmail());
     }
+    public function tasks() {
+        // the user can have multiple tasks
+        return $this->hasMany(Task::class);
+    }
 }
