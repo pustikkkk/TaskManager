@@ -2,12 +2,12 @@
 
 namespace App\Notifications;
 
+use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
 
-class CustomVerifyEmail extends Notification
+class CustomVerifyEmail extends VerifyEmail
 {
     use Queueable;
 
@@ -24,7 +24,7 @@ class CustomVerifyEmail extends Notification
      *
      * @return array<int, string>
      */
-    public function via(object $notifiable): array
+    public function via($notifiable): array
     {
         return ['mail'];
     }
@@ -32,12 +32,16 @@ class CustomVerifyEmail extends Notification
     /**
      * Get the mail representation of the notification.
      */
-    public function toMail(object $notifiable): MailMessage
+    public function toMail($notifiable): MailMessage
     {
+        // gets a verification link which will redirect me to the dashboard page
+        $url = $this->verificationUrl($notifiable);
+
+        // email message content which will be used in every email
         return (new MailMessage)
-            ->line('The introduction to the notification.')
-            ->action('Notification Action', url('/'))
-            ->line('Thank you for using our application!');
+            ->subject('Verify Email Address')
+            ->line('Verify your email address by clicking the link below')
+            ->action('Please, verify your email', $url);
     }
 
     /**
