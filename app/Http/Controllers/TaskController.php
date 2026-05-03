@@ -22,4 +22,29 @@ class TaskController extends Controller
     public function create() {
         return view('tasks.create');
     }
+
+    public function show(Task $task) {
+        return view('tasks.show', compact('task'));
+    }
+
+    public function edit(Task $task) {
+        return view('tasks.edit', compact('task'));
+    }
+
+    public function update(StoreTaskRequest $request, Task $task) {
+        $task->update(
+            $request->validated()
+        );
+        return redirect()->route('dashboard')->with('success', 'Task updated successfully');
+    }
+
+    public function destroy(Task $task) {
+        $task->delete();
+        return redirect()->route('dashboard')->with('success', 'Task deleted successfully');
+    }
+
+    public function index() {
+        $tasks = auth()->user()->tasks;
+        return view('pages.dashboard', compact('tasks'));
+    }
 }
