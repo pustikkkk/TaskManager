@@ -38,6 +38,14 @@ class TaskController extends Controller
         return redirect()->route('dashboard')->with('success', 'Task updated successfully');
     }
 
+    public function complete(Task $task)
+    {
+        $task->update([
+            'status' => 'completed'
+        ]);
+        return redirect()->route('dashboard')->with('success', 'Task completed successfully');
+    }
+
     public function destroy(Task $task) {
         $task->delete();
         return redirect()->route('dashboard')->with('success', 'Task deleted successfully');
