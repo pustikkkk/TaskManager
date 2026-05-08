@@ -1,8 +1,12 @@
 <?php
 
-use Illuminate\Foundation\Inspiring;
-use Illuminate\Support\Facades\Artisan;
 
-Artisan::command('inspire', function () {
-    $this->comment(Inspiring::quote());
-})->purpose('Display an inspiring quote');
+// The new way to handle scheduled tasks in laravel
+use App\Models\Task;
+use Carbon\Carbon;
+
+Schedule::call(function () {
+    Task::where('status', '=', 'pending')->whereDate('due_date', '<', Carbon::today())->update(['status' => 'expired']);
+})->daily();
+
+

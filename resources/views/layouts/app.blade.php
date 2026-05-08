@@ -4,7 +4,7 @@
     <title>@yield('title', 'Task Manager')</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
+<body class="bg-gradient-to-b from-cyan-600 to-blue-900 text-cyan-50/85 align-middle">
 <header>
     <nav class="h-12 bg-black flex items-center px-6">
         <a href="{{route('dashboard')}}" class="text-lg text-white">Task Manager</a>
