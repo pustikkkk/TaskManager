@@ -13,29 +13,29 @@
             hover:bg-white/10 m-3
              hover:backdrop-blur-md
              hover:shadow-xl font-medium">
-        <a href="{{route('welcome')}}" class="text-lg text-cyan-50/85  bg-white/5 backdrop-blur-2xl px-2 py-1 rounded-3xl shadow-md
+        <a href="{{route('welcome')}}" class="text-lg text-cyan-50/85  bg-white/5 backdrop-blur-2xl px-3 py-1.5 rounded-3xl shadow-md
                 border border-white/20 transition-all duration-300
                 hover:text-indigo-200/85 hover:bg-white/5">Task Manager</a>
         @if (request()->routeIs('welcome'))
-            <div class="ml-auto flex gap-4">
-                <a class="text-lg text-cyan-50/85  bg-white/5 backdrop-blur-2 px-2 py-1 rounded-3xl shadow-md
+            <div class="ml-auto flex gap-4 items-center">
+                <a class="text-lg text-cyan-50/85  bg-white/5 backdrop-blur-2 px-3 py-1.5 rounded-3xl shadow-md
                 border border-white/20 transition-all duration-300
                 hover:text-indigo-200/85 hover:bg-white/5" href="{{route('login')}}">Log in</a>
-                <a class="text-lg text-cyan-50/85  bg-white/5 backdrop-blur-2 px-2 py-1 rounded-3xl shadow-md
+                <a class="text-lg text-cyan-50/85  bg-white/5 backdrop-blur-2 px-3 py-1.5 rounded-3xl shadow-md
                 border border-white/20 transition-all duration-300
                 hover:text-indigo-200/85 hover:bg-white/5"  href="{{route('register')}}">Register</a>
             </div>
         @endif
         @if(request()->routeIs('login'))
-            <div class="ml-auto flex gap-4">
-                <a class="text-lg text-cyan-50/85  bg-white/5 backdrop-blur-2 px-2 py-1 rounded-3xl shadow-lg
+            <div class="ml-auto flex gap-4 items-center">
+                <a class="text-lg text-cyan-50/85  bg-white/5 backdrop-blur-2 px-3 py-1.5 rounded-3xl shadow-md
                 border border-white/20 transition-all duration-300
                 hover:text-indigo-200/85 hover:bg-white/5" href="{{route('register')}}">Register</a>
             </div>
         @endif
         @if(request()->routeIs('register'))
-            <div class="ml-auto flex gap-4">
-                <a class="text-lg text-cyan-50/85  bg-white/5 backdrop-blur-2 px-2 py-1 rounded-3xl shadow-lg
+            <div class="ml-auto flex gap-4 items-center">
+                <a class="text-lg text-cyan-50/85  bg-white/5 backdrop-blur-2 px-3 py-1.5 rounded-3xl shadow-md
                 border border-white/20 transition-all duration-300
                 hover:text-indigo-200/85 hover:bg-white/5" href="{{route('login')}}">Log in</a>
             </div>

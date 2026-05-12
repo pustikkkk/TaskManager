@@ -22,14 +22,14 @@
                         <a href="{{route('tasks.show',$task->id)}}" class="text-lg text-cyan-50/85 bg-white/5 backdrop-blur-2 px-3 py-1 rounded-3xl shadow-md
                             border border-white/20 transition-all duration-300
                             hover:text-indigo-200/85 hover:bg-white/5">View more</a>
-                        <form action="{{ route('tasks.destroy',$task->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this task?')">
+                        <form action="{{ route('tasks.destroy',$task->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this task?')" class="flex items-center">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="text-lg text-cyan-50/85 bg-white/5 backdrop-blur-2 px-3 py-1 rounded-3xl shadow-md
                                 border border-white/20 transition-all duration-300
                                 hover:text-indigo-200/85 hover:bg-white/5">Delete</button>
                         </form>
-                        <form action="{{route('tasks.complete',$task->id)}}" method="POST">
+                        <form action="{{route('tasks.complete',$task->id)}}" method="POST" class="flex items-center">
                             @csrf
                             @method('PATCH')
                             <button type="submit" class="text-lg text-cyan-50/85 bg-white/5 backdrop-blur-2 px-3 py-1 rounded-3xl shadow-md
@@ -62,7 +62,7 @@
                         <a href="{{route('tasks.show',$task->id)}}" class="text-lg text-cyan-50/85 bg-white/5 backdrop-blur-2 px-3 py-1 rounded-3xl shadow-md
                             border border-white/20 transition-all duration-300
                             hover:text-indigo-200/85 hover:bg-white/5">View more</a>
-                        <form action="{{ route('tasks.destroy',$task->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this task?')">
+                        <form action="{{ route('tasks.destroy',$task->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this task?')" class="flex items-center">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="text-lg text-cyan-50/85 bg-white/5 backdrop-blur-2 px-3 py-1 rounded-3xl shadow-md

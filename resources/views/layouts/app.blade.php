@@ -6,27 +6,37 @@
 </head>
 <body class="bg-gradient-to-b from-blue-500 via-blue-600 to-blue-800 text-cyan-50/85 min-h-screen">
 <header>
-    <nav class="h-14 flex items-center px-4 bg-white/10 backdrop-blur-sm
+    <nav class="min-h-14 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-0 px-4 py-3 sm:py-0 bg-white/10 backdrop-blur-sm
             border border-white/20
             rounded-3xl shadow-lg
             transition-all duration-300
             hover:bg-white/10 m-3
-             hover:backdrop-blur-md
-             hover:shadow-xl font-medium">
-        <a href="{{route('dashboard')}}" class="text-lg text-cyan-50/85  bg-white/5 backdrop-blur-2xl px-2 py-1 rounded-3xl shadow-md
-                border border-white/20 transition-all duration-300
-                hover:text-indigo-200/85 hover:bg-white/5">Task Manager</a>
-        <div class="ml-auto flex gap-4">
+            hover:backdrop-blur-md
+            hover:shadow-xl font-medium">
+
+        <a href="{{route('dashboard')}}"
+           class="text-lg text-cyan-50/85 bg-white/5 backdrop-blur-2xl px-3 py-1.5 rounded-3xl shadow-md
+                  border border-white/20 transition-all duration-300
+                  hover:text-indigo-200/85 hover:bg-white/5 text-center sm:text-left w-full sm:w-auto">
+            Task Manager
+        </a>
+
+        <div class="sm:ml-auto flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center w-full sm:w-auto">
+
             @if (request()->routeIs('dashboard'))
-            <a class="text-lg text-cyan-50/85  bg-white/5 backdrop-blur-2xl px-2 py-1 mt-5 mr-1 h-9 rounded-3xl shadow-md
-                border border-white/20 transition-all duration-300
-                hover:text-indigo-200/85 hover:bg-white/5" href="{{route('tasks.create')}}">Create a task</a>
+                <a class="text-lg text-cyan-50/85 bg-white/5 backdrop-blur-2xl px-3 py-1.5 rounded-3xl shadow-md
+                    border border-white/20 transition-all duration-300
+                    hover:text-indigo-200/85 hover:bg-white/5 text-center"
+                   href="{{route('tasks.create')}}">
+                    Create a task
+                </a>
             @endif
-            <form method="POST" action="{{ route('logout') }}">
+
+            <form method="POST" action="{{ route('logout') }}" class="w-full sm:w-auto">
                 @csrf
-                <button class="text-lg text-cyan-50/85  bg-white/5 backdrop-blur-2 px-1 py-1 rounded-3xl shadow-md
-                border border-white/20 transition-all duration-300
-                hover:text-indigo-200/85 hover:bg-white/5 m-2 mt-5">Log out</button>
+                <button class="w-full h-full text-lg text-cyan-50/85 bg-white/5 backdrop-blur-2 px-3 py-1.5 mt-3 rounded-3xl shadow-md">
+                    Log out
+                </button>
             </form>
         </div>
     </nav>
