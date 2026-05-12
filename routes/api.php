@@ -27,6 +27,12 @@ Route::post('v1/tokens', function (Request $request) {
 });
 
 Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
-    Route::apiResource('tasks', TaskController::class);
-    Route::patch('tasks/{task}/complete', [TaskController::class, 'complete']);
+    Route::get('tasks/pending',   [TaskController::class, 'pending']);
+    Route::get('tasks/archived',  [TaskController::class, 'archived']);
+    Route::get('tasks',           [TaskController::class, 'index']);
+    Route::get('tasks/{task}',    [TaskController::class, 'show']);
+    Route::post('tasks',          [TaskController::class, 'store']);
+    Route::put('tasks/{task}',              [TaskController::class, 'update']);
+    Route::patch('tasks/{task}/complete',   [TaskController::class, 'complete']);
+    Route::delete('tasks/{task}',           [TaskController::class, 'destroy']);
 });

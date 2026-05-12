@@ -10,18 +10,39 @@ use App\Models\Task;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class
-TaskController extends Controller
+class TaskController extends Controller
 {
-    public function __construct()
-    {
-        $this->authorizeResource(Task::class, 'task');
-    }
-
     public function index(): AnonymousResourceCollection
     {
-        $tasks = auth()->user()->tasks()->latest()->paginate(15);
-        return TaskResource::collection($tasks);
+        return TaskResource::collection(
+            auth()->user()->tasks()->latest()->paginate(15)
+        );
+    }
+
+    public function pending(): AnonymousResourceCollection
+    {
+        return TaskResource::collection(
+            auth()->user()->tasks()
+                ->where('status', 'pending')
+                ->latest()
+                ->paginate(15)
+        );
+    }
+
+    public function archived(): AnonymousResourceCollection
+    {
+        return TaskResource::collection(
+            auth()->user()->tasks()
+                ->whereIn('status', ['completed', 'expired'])
+                ->latest()
+                ->paginate(15)
+        );
+    }
+
+    public function show(Task $task): TaskResource
+    {
+        $this->authorize('view', $task);
+        return new TaskResource($task);
     }
 
     public function store(StoreTaskRequest $request): TaskResource
@@ -33,21 +54,11 @@ TaskController extends Controller
         return new TaskResource($task);
     }
 
-    public function show(Task $task): TaskResource
-    {
-        return new TaskResource($task);
-    }
-
     public function update(UpdateTaskRequest $request, Task $task): TaskResource
     {
+        $this->authorize('update', $task);
         $task->update($request->validated());
         return new TaskResource($task);
-    }
-
-    public function destroy(Task $task): JsonResponse
-    {
-        $task->delete();
-        return response()->json(null, 204);
     }
 
     public function complete(Task $task): TaskResource
@@ -55,5 +66,12 @@ TaskController extends Controller
         $this->authorize('update', $task);
         $task->update(['status' => 'completed']);
         return new TaskResource($task);
+    }
+
+    public function destroy(Task $task): JsonResponse
+    {
+        $this->authorize('delete', $task);
+        $task->delete();
+        return response()->json(null, 204);
     }
 }
