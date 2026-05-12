@@ -34,7 +34,7 @@
 
             <form method="POST" action="{{ route('logout') }}" class="w-full sm:w-auto">
                 @csrf
-                <button class="w-full h-full text-lg text-cyan-50/85 bg-white/5 backdrop-blur-2 px-3 py-1.5 mt-3 rounded-3xl shadow-md">
+                <button class="w-full h-full text-lg text-cyan-50/85 bg-white/5 backdrop-blur-2xl px-3 py-1.5 mt-4 rounded-3xl shadow-md border border-white/20 transition-all duration-300 hover:text-rose-300/85 hover:bg-white/5">
                     Log out
                 </button>
             </form>

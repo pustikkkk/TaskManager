@@ -9,7 +9,9 @@
                 <p><span class="text-sm font-medium opacity-75">Status</span><br>{{ $task->status }}</p>
                 <p><span class="text-sm font-medium opacity-75">Priority</span><br>{{ $task->priority }}</p>
                 <p><span class="text-sm font-medium opacity-75">Due date</span><br>{{Carbon::parse($task->due_date)->format('M d, Y')}}</p>
+                @if($task->description !== null)
                 <p id="description"><span class="text-sm font-medium opacity-75">Description</span><br>{{$task->description}}</p>
+                @endif
             </div>
         </div>
     </div>

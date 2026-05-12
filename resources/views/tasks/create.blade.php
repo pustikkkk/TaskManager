@@ -9,7 +9,7 @@
                 <div class="mb-5 flex flex-col gap-1">
                     <label for="title" class="font-medium text-sm">Title</label>
                     <input id="title" name="title" type="text" placeholder="Enter a title" class="appearance-none outline-none ring-0 focus:ring-0 w-full
-                    text-lg text-cyan-50/85 bg-white/5 backdrop-blur-3xl px-3 py-2 rounded-3xl shadow-md
+                    text-lg text-cyan-50/85 placeholder:text-cyan-50/40 bg-white/5 backdrop-blur-3xl px-3 py-2 rounded-3xl shadow-md
                     border border-white/20 transition-all duration-300
                     hover:text-indigo-200/85 focus:bg-white/10 focus:outline-none focus:border-white/45">
                     @error('title')
@@ -19,7 +19,7 @@
                 <div class="mb-5 flex flex-col gap-1">
                     <label for="description" class="font-medium text-sm">Description</label>
                     <textarea id="description" name="description" placeholder="Description..." rows="4" class="appearance-none outline-none ring-0 focus:ring-0 w-full
-                    text-lg text-cyan-50/85 bg-white/5 backdrop-blur-3xl px-3 py-2 rounded-3xl shadow-md
+                    text-lg text-cyan-50/85 placeholder:text-cyan-50/40 bg-white/5 backdrop-blur-3xl px-3 py-2 rounded-3xl shadow-md
                     border border-white/20 transition-all duration-300
                     hover:text-indigo-200/85 focus:bg-white/10 focus:outline-none focus:border-white/45"></textarea>
                     @error('description')
@@ -28,10 +28,11 @@
                 </div>
                 <div class="mb-5 flex flex-col gap-1">
                     <label for="due_date" class="font-medium text-sm">Due date</label>
-                    <input id="due_date" name="due_date" type="date" class="appearance-none outline-none ring-0 focus:ring-0 w-full
+                    <input id="due_date" name="due_date" type="date" min="{{ date('Y-m-d') }}" value="{{ date('Y-m-d') }}" class="appearance-none outline-none ring-0 focus:ring-0 w-full
                     text-lg text-cyan-50/85 bg-white/5 backdrop-blur-3xl px-3 py-2 rounded-3xl shadow-md
                     border border-white/20 transition-all duration-300
-                    hover:text-indigo-200/85 focus:bg-white/10 focus:outline-none focus:border-white/45">
+                    hover:text-indigo-200/85 focus:bg-white/10 focus:outline-none focus:border-white/45
+                    [&::-webkit-calendar-picker-indicator]:[filter:invert(1)] [&::-webkit-calendar-picker-indicator]:cursor-pointer">
                     @error('due_date')
                     <p class="text-red-500 text-sm">Invalid date</p>
                     @enderror
