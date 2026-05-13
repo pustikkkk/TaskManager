@@ -16,7 +16,7 @@ use App\Notifications\CustomVerifyEmail;
 class User extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<UserFactory> */
-    use HasApiTokens,HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable; // HasApiTokens: Sanctum token support; HasFactory: User::factory() in tests
 
     /**
      * Get the attributes that should be cast.

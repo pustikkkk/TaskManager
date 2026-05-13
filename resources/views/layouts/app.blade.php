@@ -1,3 +1,4 @@
+{{-- Authenticated layout: glass nav bar with home link, conditional "Create a task" link (dashboard only), and logout form --}}
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
@@ -23,6 +24,7 @@
 
         <div class="sm:ml-auto flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center w-full sm:w-auto">
 
+            {{-- "Create a task" link only appears when the user is on the dashboard --}}
             @if (request()->routeIs('dashboard'))
                 <a class="text-lg text-cyan-50/85 bg-white/5 backdrop-blur-2xl px-3 py-1.5 rounded-3xl shadow-md
                     border border-white/20 transition-all duration-300

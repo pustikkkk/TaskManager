@@ -1,3 +1,4 @@
+{{-- Guest (unauthenticated) layout: nav shows Login+Register on welcome, Register-only on login page, Login-only on register page --}}
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">

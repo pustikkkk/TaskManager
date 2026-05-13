@@ -1,4 +1,5 @@
 <?php
+// Handles web login: GET renders form, POST authenticates via LoginRequest, POST /logout destroys session
 
 namespace App\Http\Controllers\Auth;
 

@@ -1,4 +1,5 @@
 <?php
+// Shapes Task model into the API JSON response; used by every Api/V1/TaskController method
 
 namespace App\Http\Resources;
 

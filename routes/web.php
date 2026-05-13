@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
@@ -9,6 +8,7 @@ Route::get('/', function () {
 })->name('welcome');
 
 
+// Added throttle:web (20 req/min) to all authenticated routes
 Route::get('dashboard', [TaskController::class, 'index'])
     ->middleware(['auth','verified','throttle:web'])
     ->name('dashboard');

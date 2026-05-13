@@ -1,3 +1,4 @@
+{{-- Login form; authenticates via username (not email) — field name must match LoginRequest --}}
 @extends('layouts.guest')
 
 @section('title', 'Login')

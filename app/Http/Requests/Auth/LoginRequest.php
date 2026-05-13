@@ -1,4 +1,5 @@
 <?php
+// Authenticates via username (not email); throttle key is username+IP, 5 attempts before lockout
 
 namespace App\Http\Requests\Auth;
 

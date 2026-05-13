@@ -1,4 +1,5 @@
 <?php
+// Single-action: redirects already-verified users to dashboard; others see the verify-email prompt view
 
 namespace App\Http\Controllers\Auth;
 

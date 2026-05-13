@@ -125,6 +125,8 @@ class TaskTest extends TestCase
         $this->actingAs($other)->patch("/tasks/{$task->id}/complete")->assertStatus(403);
     }
 
+    // --- Added: dashboard access, view rendering, and validation tests below ---
+
     // --- Dashboard access ---
 
     public function test_guest_is_redirected_from_dashboard_to_login(): void

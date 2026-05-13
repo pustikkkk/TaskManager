@@ -1,3 +1,4 @@
+{{-- Post-registration screen; shows the user's email address and instructs them to check their inbox; no resend action --}}
 @extends('layouts.guest')
 
 @section('title', 'Verify email')

@@ -1,4 +1,5 @@
 @php use Carbon\Carbon; @endphp
+{{-- Read-only task detail card; description block is conditionally rendered when not null --}}
 @extends('layouts.app')
 @section('title', 'Show task')
 @section('content')

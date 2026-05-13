@@ -1,4 +1,5 @@
 <?php
+// Ownership policy: view/update/delete gates pass only when task.user_id matches the authenticated user
 
 namespace App\Policies;
 

@@ -1,4 +1,8 @@
 @php use Carbon\Carbon; @endphp
+{{--
+  Dashboard: two sections — pending tasks (always shown) and archived tasks (completed/expired, shown only when they exist).
+  Each section has its own filter form; hidden inputs carry the other section's filter state so both survive on every submission.
+--}}
 @extends('layouts.app')
 @section('title', 'Dashboard')
 @section('content')

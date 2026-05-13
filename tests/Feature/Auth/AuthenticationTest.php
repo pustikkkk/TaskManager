@@ -1,4 +1,6 @@
 <?php
+// Fixed: login payloads used 'email' instead of 'username' (app authenticates by username)
+// Added: nonexistent username test, guest redirect test, authenticated-user-on-login-page test
 
 namespace Tests\Feature\Auth;
 

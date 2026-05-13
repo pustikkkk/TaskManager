@@ -1,3 +1,4 @@
+{{-- Create task form; title uniqueness and due_date >= today are enforced by StoreTaskRequest --}}
 @extends('layouts.app')
 @section('title', 'Create a task')
 @section('content')
@@ -28,6 +29,7 @@
                 </div>
                 <div class="mb-5 flex flex-col gap-1">
                     <label for="due_date" class="font-medium text-sm">Due date</label>
+                    {{-- min=today prevents the browser from selecting past dates; server-side also rejects them --}}
                     <input id="due_date" name="due_date" type="date" min="{{ date('Y-m-d') }}" value="{{ date('Y-m-d') }}" class="appearance-none outline-none ring-0 focus:ring-0 w-full
                     text-lg text-cyan-50/85 bg-white/5 backdrop-blur-3xl px-3 py-2 rounded-3xl shadow-md
                     border border-white/20 transition-all duration-300

@@ -1,4 +1,5 @@
 <?php
+// Added: new file — covers POST /api/v1/tokens (happy path, wrong credentials, missing fields)
 
 namespace Tests\Feature\Api;
 

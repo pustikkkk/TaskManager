@@ -1,4 +1,5 @@
 <?php
+// Updates authenticated user's password; validates current password using 'current_password' rule
 
 namespace App\Http\Controllers\Auth;
 

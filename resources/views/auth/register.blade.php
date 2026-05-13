@@ -1,3 +1,4 @@
+{{-- Registration form; all validation errors are collected and displayed as a bulleted list below the inputs --}}
 @extends('layouts.guest')
 
 @section('title', 'Register')

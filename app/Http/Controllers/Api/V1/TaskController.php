@@ -1,4 +1,5 @@
 <?php
+// API task controller — all responses are wrapped in TaskResource; ownership enforced via TaskPolicy
 
 namespace App\Http\Controllers\Api\V1;
 

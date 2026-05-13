@@ -1,4 +1,6 @@
 <?php
+// Added: new file — full API task CRUD coverage using Sanctum::actingAs(); tests all 8 endpoints
+// including ownership enforcement (403), pagination shape, and TaskResource field structure
 
 namespace Tests\Feature\Api;
 

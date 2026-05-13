@@ -1,4 +1,5 @@
 <?php
+// Same rules as StoreTaskRequest but title uniqueness ignores the task being edited
 
 namespace App\Http\Requests;
 

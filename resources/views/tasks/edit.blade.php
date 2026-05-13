@@ -1,3 +1,4 @@
+{{-- Edit task form; fields pre-populated via old() with $task fallback; "Mark as completed" checkbox only shown for pending tasks --}}
 @extends('layouts.app')
 @section('title', 'Edit task')
 @section('content')
@@ -49,6 +50,7 @@
                         <option value="high" {{old('priority', $task->priority == 'high' ? 'selected' : '')}}>High</option>
                     </select>
                 </div>
+                {{-- Completed/expired tasks can't be re-marked; checkbox only appears for pending status --}}
                 @if($task->status == 'pending')
                     <div class="mb-5 flex items-center gap-2">
                         <div class="relative flex items-center justify-center w-5 h-5">

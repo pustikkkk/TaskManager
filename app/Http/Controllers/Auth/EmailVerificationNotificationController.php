@@ -1,4 +1,5 @@
 <?php
+// Resends the verification email via CustomVerifyEmail; no-ops if already verified
 
 namespace App\Http\Controllers\Auth;
 

@@ -24,8 +24,9 @@ Route::post('v1/tokens', function (Request $request) {
     return response()->json([
         'token' => $user->createToken('api-token')->plainTextToken,
     ]);
-})->middleware('throttle:login');
+})->middleware('throttle:login'); // Added: 5 req/min IP-level guard on token issuance
 
+// Added throttle:api-requests (20 req/min) to all authenticated task routes
 Route::prefix('v1')->middleware(['auth:sanctum', 'throttle:api-requests'])->group(function () {
     Route::get('tasks/pending',   [TaskController::class, 'pending']);
     Route::get('tasks/archived',  [TaskController::class, 'archived']);

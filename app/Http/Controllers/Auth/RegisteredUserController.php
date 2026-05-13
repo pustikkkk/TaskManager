@@ -1,4 +1,5 @@
 <?php
+// Handles registration: validates username/email/password, creates User, fires Registered event, auto-logs-in
 
 namespace App\Http\Controllers\Auth;
 

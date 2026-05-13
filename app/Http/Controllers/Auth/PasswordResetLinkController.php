@@ -1,4 +1,5 @@
 <?php
+// Sends a password reset link to the given email; view (auth.forgot-password) not yet created
 
 namespace App\Http\Controllers\Auth;
 

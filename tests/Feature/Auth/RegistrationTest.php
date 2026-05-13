@@ -1,4 +1,6 @@
 <?php
+// Rewritten: original Breeze stub used 'name' field and tested only happy path
+// Added: full validation coverage for username, email, password, and Registered event assertion
 
 namespace Tests\Feature\Auth;
 

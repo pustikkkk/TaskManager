@@ -1,4 +1,5 @@
 <?php
+// Single-action: marks authenticated user's email verified, fires Verified event, redirects to dashboard
 
 namespace App\Http\Controllers\Auth;
 

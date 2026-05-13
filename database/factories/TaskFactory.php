@@ -1,4 +1,5 @@
 <?php
+// Added: TaskFactory did not exist; required for Task::factory() in tests and seeders
 
 namespace Database\Factories;
 

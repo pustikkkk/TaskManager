@@ -1,4 +1,5 @@
 <?php
+// Password reset form (GET) and submission (POST); requires signed token from PasswordResetLinkController; view not yet created
 
 namespace App\Http\Controllers\Auth;
 

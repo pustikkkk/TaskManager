@@ -1,4 +1,5 @@
 <?php
+// Overrides Laravel's default VerifyEmail notification with a custom subject line and body text
 
 namespace App\Notifications;
 

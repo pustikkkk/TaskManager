@@ -1,4 +1,5 @@
 <?php
+// Fixed: original used Pest's it() function but Pest is not installed; converted to PHPUnit class
 
 namespace Tests\Feature;
 

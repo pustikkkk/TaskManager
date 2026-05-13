@@ -1,4 +1,5 @@
 <?php
+// Password re-confirmation gate — sets auth.password_confirmed_at in session; view not yet created
 
 namespace App\Http\Controllers\Auth;
 

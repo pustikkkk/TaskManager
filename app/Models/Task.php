@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
-    use HasFactory;
+    use HasFactory; // Added: enables Task::factory() for seeding and tests
 
     protected $fillable = [
         'title',

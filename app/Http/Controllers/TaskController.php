@@ -24,17 +24,17 @@ class TaskController extends Controller
     }
 
     public function show(Task $task) {
-        $this->authorize('view', $task);
+        $this->authorize('view', $task); // Added: enforce TaskPolicy — only owner may view
         return view('tasks.show', compact('task'));
     }
 
     public function edit(Task $task) {
-        $this->authorize('update', $task);
+        $this->authorize('update', $task); // Added: enforce TaskPolicy — only owner may open edit form
         return view('tasks.edit', compact('task'));
     }
 
     public function update(StoreTaskRequest $request, Task $task) {
-        $this->authorize('update', $task);
+        $this->authorize('update', $task); // Added: enforce TaskPolicy — only owner may update
         $task->update(
             $request->validated()
         );
@@ -43,7 +43,7 @@ class TaskController extends Controller
 
     public function complete(Task $task)
     {
-        $this->authorize('update', $task);
+        $this->authorize('update', $task); // Added: enforce TaskPolicy — only owner may complete
         $task->update([
             'status' => 'completed'
         ]);
@@ -51,7 +51,7 @@ class TaskController extends Controller
     }
 
     public function destroy(Task $task) {
-        $this->authorize('delete', $task);
+        $this->authorize('delete', $task); // Added: enforce TaskPolicy — only owner may delete
         $task->delete();
         return redirect()->route('dashboard')->with('success', 'Task deleted successfully');
     }
