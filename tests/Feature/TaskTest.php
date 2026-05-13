@@ -124,4 +124,97 @@ class TaskTest extends TestCase
 
         $this->actingAs($other)->patch("/tasks/{$task->id}/complete")->assertStatus(403);
     }
+
+    // --- Dashboard access ---
+
+    public function test_guest_is_redirected_from_dashboard_to_login(): void
+    {
+        $this->get('/dashboard')->assertRedirect('/login');
+    }
+
+    public function test_unverified_user_is_redirected_to_email_verification(): void
+    {
+        $user = User::factory()->unverified()->create();
+
+        $this->actingAs($user)->get('/dashboard')->assertRedirect('/verify-email');
+    }
+
+    // --- View rendering ---
+
+    public function test_create_form_renders_for_authenticated_user(): void
+    {
+        $user = User::factory()->create();
+
+        $this->actingAs($user)->get('/tasks/create')->assertStatus(200);
+    }
+
+    public function test_owner_can_view_edit_form(): void
+    {
+        $user = User::factory()->create();
+        $task = $this->makeTask($user);
+
+        $this->actingAs($user)->get("/tasks/{$task->id}/edit")->assertStatus(200);
+    }
+
+    public function test_other_user_cannot_view_edit_form(): void
+    {
+        $owner = User::factory()->create();
+        $other = User::factory()->create();
+        $task  = $this->makeTask($owner);
+
+        $this->actingAs($other)->get("/tasks/{$task->id}/edit")->assertStatus(403);
+    }
+
+    // --- Store validation ---
+
+    public function test_store_fails_without_title(): void
+    {
+        $user = User::factory()->create();
+
+        $this->actingAs($user)->post('/tasks', [
+            'priority' => 'medium',
+        ])->assertSessionHasErrors(['title']);
+    }
+
+    public function test_store_fails_without_priority(): void
+    {
+        $user = User::factory()->create();
+
+        $this->actingAs($user)->post('/tasks', [
+            'title' => 'Some Task',
+        ])->assertSessionHasErrors(['priority']);
+    }
+
+    public function test_store_fails_with_invalid_priority_value(): void
+    {
+        $user = User::factory()->create();
+
+        $this->actingAs($user)->post('/tasks', [
+            'title'    => 'Some Task',
+            'priority' => 'urgent',
+        ])->assertSessionHasErrors(['priority']);
+    }
+
+    public function test_store_fails_with_past_due_date(): void
+    {
+        $user = User::factory()->create();
+
+        $this->actingAs($user)->post('/tasks', [
+            'title'    => 'Some Task',
+            'priority' => 'medium',
+            'due_date' => now()->subDay()->toDateString(),
+        ])->assertSessionHasErrors(['due_date']);
+    }
+
+    // --- Update validation ---
+
+    public function test_update_fails_without_title(): void
+    {
+        $user = User::factory()->create();
+        $task = $this->makeTask($user);
+
+        $this->actingAs($user)->put("/tasks/{$task->id}", [
+            'priority' => 'low',
+        ])->assertSessionHasErrors(['title']);
+    }
 }

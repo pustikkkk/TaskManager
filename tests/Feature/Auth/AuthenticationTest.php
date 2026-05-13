@@ -12,9 +12,7 @@ class AuthenticationTest extends TestCase
 
     public function test_login_screen_can_be_rendered(): void
     {
-        $response = $this->get('/login');
-
-        $response->assertStatus(200);
+        $this->get('/login')->assertStatus(200);
     }
 
     public function test_users_can_authenticate_using_the_login_screen(): void
@@ -22,7 +20,7 @@ class AuthenticationTest extends TestCase
         $user = User::factory()->create();
 
         $response = $this->post('/login', [
-            'email' => $user->email,
+            'username' => $user->username,
             'password' => 'password',
         ]);
 
@@ -30,13 +28,23 @@ class AuthenticationTest extends TestCase
         $response->assertRedirect(route('dashboard', absolute: false));
     }
 
-    public function test_users_can_not_authenticate_with_invalid_password(): void
+    public function test_users_cannot_authenticate_with_invalid_password(): void
     {
         $user = User::factory()->create();
 
         $this->post('/login', [
-            'email' => $user->email,
+            'username' => $user->username,
             'password' => 'wrong-password',
+        ]);
+
+        $this->assertGuest();
+    }
+
+    public function test_users_cannot_authenticate_with_nonexistent_username(): void
+    {
+        $this->post('/login', [
+            'username' => 'nobody',
+            'password' => 'password',
         ]);
 
         $this->assertGuest();
@@ -50,5 +58,17 @@ class AuthenticationTest extends TestCase
 
         $this->assertGuest();
         $response->assertRedirect('/');
+    }
+
+    public function test_guest_is_redirected_from_dashboard_to_login(): void
+    {
+        $this->get('/dashboard')->assertRedirect('/login');
+    }
+
+    public function test_authenticated_user_accessing_login_is_redirected(): void
+    {
+        $user = User::factory()->create();
+
+        $this->actingAs($user)->get('/login')->assertRedirect();
     }
 }

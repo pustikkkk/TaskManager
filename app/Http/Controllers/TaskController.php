@@ -24,14 +24,17 @@ class TaskController extends Controller
     }
 
     public function show(Task $task) {
+        $this->authorize('view', $task);
         return view('tasks.show', compact('task'));
     }
 
     public function edit(Task $task) {
+        $this->authorize('update', $task);
         return view('tasks.edit', compact('task'));
     }
 
     public function update(StoreTaskRequest $request, Task $task) {
+        $this->authorize('update', $task);
         $task->update(
             $request->validated()
         );
@@ -40,6 +43,7 @@ class TaskController extends Controller
 
     public function complete(Task $task)
     {
+        $this->authorize('update', $task);
         $task->update([
             'status' => 'completed'
         ]);
@@ -47,6 +51,7 @@ class TaskController extends Controller
     }
 
     public function destroy(Task $task) {
+        $this->authorize('delete', $task);
         $task->delete();
         return redirect()->route('dashboard')->with('success', 'Task deleted successfully');
     }
