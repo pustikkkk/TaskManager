@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use Laravel\Sanctum\HasApiTokens;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Database\Factories\UserFactory;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -16,7 +16,7 @@ use App\Notifications\CustomVerifyEmail;
 class User extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable;
+    use HasApiTokens,HasFactory, Notifiable;
 
     /**
      * Get the attributes that should be cast.
