@@ -24,9 +24,9 @@ Route::post('v1/tokens', function (Request $request) {
     return response()->json([
         'token' => $user->createToken('api-token')->plainTextToken,
     ]);
-});
+})->middleware('throttle:login');
 
-Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
+Route::prefix('v1')->middleware(['auth:sanctum', 'throttle:api-requests'])->group(function () {
     Route::get('tasks/pending',   [TaskController::class, 'pending']);
     Route::get('tasks/archived',  [TaskController::class, 'archived']);
     Route::get('tasks',           [TaskController::class, 'index']);
