@@ -13,7 +13,7 @@ COPY resources/ resources/
 RUN npm run build
 
 # ── Stage 2: PHP application ──────────────────────────────────────────────────
-FROM php:8.3-cli-alpine
+FROM php:8.4-cli-alpine
 
 RUN apk add --no-cache \
     git \
