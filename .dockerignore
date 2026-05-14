@@ -1,0 +1,19 @@
+node_modules/
+vendor/
+.git/
+.env
+.env.local
+storage/framework/cache/
+storage/framework/sessions/
+storage/framework/views/
+storage/logs/
+public/build/
+*.log
+tests/
+phpunit.xml
+*.md
+.github/
+.idea/
+composer
+composer 2.lock
+database/database.sqlite
