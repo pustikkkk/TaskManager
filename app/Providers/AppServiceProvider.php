@@ -6,6 +6,7 @@ use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,6 +15,9 @@ class AppServiceProvider extends ServiceProvider
     // Added: named rate limiters consumed by throttle:web, throttle:api-requests, throttle:login middleware
     public function boot(): void
     {
+        if (app()->environment('production')) {
+            URL::forceScheme('https');
+        }
         // 20 req/min per authenticated user ID or IP for all web task routes
         RateLimiter::for('web', function (Request $request) {
             return Limit::perMinute(20)->by($request->user()?->id ?: $request->ip());
