@@ -20,9 +20,6 @@ class AppServiceProvider extends ServiceProvider
         if (app()->environment('production')) {
             // forces https so my tailwind loads
             URL::forceScheme('https');
-            if (app()->runningInConsole()) {
-                URL::forceRootUrl(config('app.url'));
-            }
         }
 
         Mail::extend('sendgrid', function () {
