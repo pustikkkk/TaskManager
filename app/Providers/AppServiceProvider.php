@@ -18,6 +18,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         if (app()->environment('production')) {
+            // forces https so my tailwind loads
             URL::forceScheme('https');
             if (app()->runningInConsole()) {
                 URL::forceRootUrl(config('app.url'));
