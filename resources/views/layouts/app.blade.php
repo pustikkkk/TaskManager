@@ -24,8 +24,8 @@
 
         <div class="sm:ml-auto flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center w-full sm:w-auto">
 
-            {{-- "Create a task" link only appears when the user is on the dashboard --}}
-            @if (request()->routeIs('dashboard'))
+            {{-- "Create a task" link only appears on the dashboard when the user already has pending tasks --}}
+            @if (request()->routeIs('dashboard') && auth()->user()->tasks()->where('status', 'pending')->exists())
                 <a class="text-lg text-cyan-50/85 bg-white/5 backdrop-blur-2xl px-3 py-1.5 rounded-3xl shadow-md
                     border border-white/20 transition-all duration-300
                     hover:text-indigo-200/85 hover:bg-white/5 text-center"

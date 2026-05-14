@@ -9,6 +9,7 @@
 
     {{-- Pending heading + filters --}}
     <h1 class="text-4xl font-bold m-4 text-center">Task Dashboard</h1>
+    @if($pendingTasks->isNotEmpty())
     <form method="GET" action="{{ route('dashboard') }}"
           class="flex flex-wrap gap-2 px-6 max-w-3xl mx-auto mb-4">
             {{-- Preserve archive params --}}
@@ -48,6 +49,7 @@
                 <option value="month" {{ request('due_date') == 'month' ? 'selected' : '' }}>This month</option>
             </select>
     </form>
+    @endif
 
     <ul class="space-y-4 px-6 max-w-3xl mx-auto pb-8">
         @forelse($pendingTasks as $task)
@@ -84,7 +86,12 @@
                 </div>
             </li>
         @empty
-            <li class="text-center">No Task Found</li>
+            <li class="text-center flex flex-col items-center gap-3">
+                <span>No Task Found</span>
+                <a href="{{ route('tasks.create') }}" class="text-lg text-cyan-50/85 bg-white/5 backdrop-blur-2 px-4 py-1.5 rounded-3xl shadow-md
+                    border border-white/20 transition-all duration-300
+                    hover:text-indigo-200/85 hover:bg-white/10">Create your first task</a>
+            </li>
         @endforelse
     </ul>
 
