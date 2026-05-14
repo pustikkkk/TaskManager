@@ -17,8 +17,7 @@ class AppServiceProvider extends ServiceProvider
     // Added: named rate limiters consumed by throttle:web, throttle:api-requests, throttle:login middleware
     public function boot(): void
     {
-        if (app()->environment('production')) {
-            // forces https so my tailwind loads
+        if (str_starts_with(config('app.url'), 'https')) {
             URL::forceScheme('https');
         }
 
