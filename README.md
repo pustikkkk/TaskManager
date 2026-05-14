@@ -6,14 +6,14 @@ A full-stack personal productivity application built with **Laravel 13** and a c
 
 ## Try it live
 
-A live demo is available at: `<!-- deployment URL -->`
+A live demo is available at: https://taskmananger-production.up.railway.app/
 
 To explore the app without registering, use these demo credentials:
 
 | Field | Value |
 |---|---|
-| Username | `<!-- username -->` |
-| Password | `<!-- password -->` |
+| Username | `pustikkk` |
+| Password | `qonhot-3kumje-Mognuj` |
 
 ---
 
