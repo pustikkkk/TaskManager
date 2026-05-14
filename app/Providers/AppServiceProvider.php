@@ -4,9 +4,11 @@ namespace App\Providers;
 
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\URL;
+use Symfony\Component\Mailer\Bridge\Sendgrid\Transport\SendgridApiTransport;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,6 +20,10 @@ class AppServiceProvider extends ServiceProvider
         if (app()->environment('production')) {
             URL::forceScheme('https');
         }
+
+        Mail::extend('sendgrid', function () {
+            return new SendgridApiTransport(config('services.sendgrid.key'));
+        });
         // 20 req/min per authenticated user ID or IP for all web task routes
         RateLimiter::for('web', function (Request $request) {
             return Limit::perMinute(20)->by($request->user()?->id ?: $request->ip());
