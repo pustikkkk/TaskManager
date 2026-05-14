@@ -88,7 +88,8 @@ class TaskController extends Controller
             'priority_desc' => $query->orderByRaw("CASE priority WHEN 'high' THEN 1 WHEN 'medium' THEN 2 WHEN 'low' THEN 3 END"),
             default         => null,
         };
-        $pendingTasks = $query->get();
+        $pendingTasks    = $query->get();
+        $hasPendingTasks = auth()->user()->tasks()->where('status', 'pending')->exists();
 
         // Archived query
         $archiveQuery = auth()->user()->tasks()->where('status', '!=', 'pending');
@@ -112,8 +113,9 @@ class TaskController extends Controller
             'status_desc'   => $archiveQuery->orderBy('status', 'desc'),
             default         => $archiveQuery->orderBy('due_date', 'desc'),
         };
-        $archivedTasks = $archiveQuery->get();
+        $archivedTasks    = $archiveQuery->get();
+        $hasArchivedTasks = auth()->user()->tasks()->where('status', '!=', 'pending')->exists();
 
-        return view('pages.dashboard', compact('pendingTasks', 'archivedTasks'));
+        return view('pages.dashboard', compact('pendingTasks', 'archivedTasks', 'hasPendingTasks', 'hasArchivedTasks'));
     }
 }

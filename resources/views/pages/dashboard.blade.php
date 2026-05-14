@@ -9,7 +9,7 @@
 
     {{-- Pending heading + filters --}}
     <h1 class="text-4xl font-bold m-4 text-center">Task Dashboard</h1>
-    @if($pendingTasks->isNotEmpty())
+    @if($hasPendingTasks)
     <form method="GET" action="{{ route('dashboard') }}"
           class="flex flex-wrap gap-2 px-6 max-w-3xl mx-auto mb-4">
             {{-- Preserve archive params --}}
@@ -87,15 +87,22 @@
             </li>
         @empty
             <li class="text-center flex flex-col items-center gap-3">
-                <span>No Task Found</span>
-                <a href="{{ route('tasks.create') }}" class="text-lg text-cyan-50/85 bg-white/5 backdrop-blur-2 px-4 py-1.5 rounded-3xl shadow-md
-                    border border-white/20 transition-all duration-300
-                    hover:text-indigo-200/85 hover:bg-white/10">Create your first task</a>
+                @if($hasPendingTasks)
+                    <span>No tasks match the current filters</span>
+                    <a href="{{ route('dashboard') }}" class="text-lg text-cyan-50/85 bg-white/5 backdrop-blur-2 px-4 py-1.5 rounded-3xl shadow-md
+                        border border-white/20 transition-all duration-300
+                        hover:text-indigo-200/85 hover:bg-white/10">Clear filters</a>
+                @else
+                    <span>No Task Found</span>
+                    <a href="{{ route('tasks.create') }}" class="text-lg text-cyan-50/85 bg-white/5 backdrop-blur-2 px-4 py-1.5 rounded-3xl shadow-md
+                        border border-white/20 transition-all duration-300
+                        hover:text-indigo-200/85 hover:bg-white/10">Create your first task</a>
+                @endif
             </li>
         @endforelse
     </ul>
 
-    @if(auth()->user()->tasks()->where('status', '!=', 'pending')->exists())
+    @if($hasArchivedTasks)
         {{-- Archived heading + filters --}}
         <h1 class="text-4xl font-bold m-4 text-center">Archived tasks</h1>
         <form method="GET" action="{{ route('dashboard') }}"
@@ -174,7 +181,13 @@
                     </div>
                 </li>
             @empty
-                <li class="text-center">No Task Found</li>
+                <li class="text-center flex flex-col items-center gap-3">
+                    <span>No tasks match the current filters</span>
+                    <a href="{{ route('dashboard', ['sort' => request('sort', 'date_asc'), 'priority' => request('priority'), 'due_date' => request('due_date')]) }}"
+                       class="text-lg text-cyan-50/85 bg-white/5 backdrop-blur-2 px-4 py-1.5 rounded-3xl shadow-md
+                           border border-white/20 transition-all duration-300
+                           hover:text-indigo-200/85 hover:bg-white/10">Clear filters</a>
+                </li>
             @endforelse
         </ul>
     @endif
