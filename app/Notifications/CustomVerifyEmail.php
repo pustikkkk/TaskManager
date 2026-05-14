@@ -35,14 +35,11 @@ class CustomVerifyEmail extends VerifyEmail implements ShouldQueue
      */
     public function toMail($notifiable): MailMessage
     {
-        // gets a verification link which will redirect me to the dashboard page
         $url = $this->verificationUrl($notifiable);
 
-        // email message content which will be used in every email
         return (new MailMessage)
-            ->subject('Verify Email Address')
-            ->line('Verify your email address by clicking the link below')
-            ->action('Please, verify your email', $url);
+            ->subject('Verify your email address — Task Manager')
+            ->view('emails.verify-email', ['url' => $url]);
     }
 
     /**
