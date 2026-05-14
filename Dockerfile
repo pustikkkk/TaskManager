@@ -53,6 +53,12 @@ RUN composer install --no-dev --optimize-autoloader --no-scripts --no-interactio
 # Copy application source
 COPY . .
 
+# Recreate storage subdirectories excluded by .dockerignore
+RUN mkdir -p storage/framework/views \
+             storage/framework/cache \
+             storage/framework/sessions \
+             storage/logs
+
 # Overlay compiled frontend assets from Stage 1
 COPY --from=node-builder /app/public/build public/build
 
