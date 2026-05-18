@@ -7,6 +7,6 @@ use Carbon\Carbon;
 
 Schedule::call(function () {
     Task::where('status', '=', 'pending')->whereDate('due_date', '<', Carbon::today())->update(['status' => 'expired']);
-})->daily();
+})->hourly();
 
 
