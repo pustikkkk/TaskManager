@@ -3,10 +3,12 @@
 
 namespace App\Http\Requests\Auth;
 
+use App\Models\User;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
@@ -43,13 +45,23 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('username', 'password'), $this->boolean('remember'))) {
-            RateLimiter::hit($this->throttleKey());
+        $user = User::where('username', $this->string('username'))->first();
 
+        if (! $user) {
+            RateLimiter::hit($this->throttleKey());
             throw ValidationException::withMessages([
-                'username' => trans('auth.failed'),
+                'username' => 'No account found with that username.',
             ]);
         }
+
+        if (! Hash::check($this->string('password'), $user->password)) {
+            RateLimiter::hit($this->throttleKey());
+            throw ValidationException::withMessages([
+                'password' => 'Incorrect password.',
+            ]);
+        }
+
+        Auth::login($user, $this->boolean('remember'));
 
         RateLimiter::clear($this->throttleKey());
     }
