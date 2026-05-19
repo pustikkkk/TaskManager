@@ -21,6 +21,16 @@
                 border border-white/20 transition-all duration-300
                 hover:text-indigo-200/85 focus:bg-white/10 focus:outline-none focus:border-white/45">
             </div>
+            @if($errors->any())
+                <div class="mb-5 border border-white/10 shadow-lg backdrop-blur-3xl rounded-3xl text-center
+                hover:shadow-xl transition-all duration-300">
+                    <ul class="text-cyan-50/85 list-inside list-disc p-5">
+                        @foreach($errors->all() as $error)
+                            <li>{{$error}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
                 <div class="flex justify-center">
                     <button type="submit" class="text-lg text-cyan-50/85  bg-white/5 px-2 py-1 rounded-3xl shadow-md
                             border border-white/20 transition-all duration-300 hover:text-indigo-200/85
