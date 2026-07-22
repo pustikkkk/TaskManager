@@ -12,7 +12,7 @@ https://taskmananger-production.up.railway.app/
 
 Demo credentials:
 
-Username: pustikkk  
+Username: pustikkkk  
 Password: qonhot-3kumje-Mognuj  
 
 ---
