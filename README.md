@@ -8,7 +8,7 @@ The application includes both a web interface and a fully authenticated API buil
 
 ## Live Demo
 
-https://taskmananger-production.up.railway.app/
+taskmanager.pustikkkk.me
 
 Demo credentials:
 
