@@ -8,7 +8,7 @@ The application includes both a web interface and a fully authenticated API buil
 
 ## Live Demo
 
-taskmanager.pustikkkk.me
+https://taskmanager.pustikkkk.me
 
 Demo credentials:
 
