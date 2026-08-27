@@ -22,4 +22,14 @@ class Task extends Model
     {
         return $this->belongsTo(User::class);
     }
+    // added a function which creates a timestamp of when the task was synced
+    protected function casts(): array
+    {
+        return ['synced_at' => 'datetime'];
+    }
+    // added the function which scopes unsynced tasks
+    public function scopeUnsynced($query)
+    {
+        return $query->whereNull('synced_at');
+    }
 }

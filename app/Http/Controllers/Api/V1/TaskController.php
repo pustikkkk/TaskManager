@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateTaskRequest;
 use App\Http\Resources\TaskResource;
 use App\Models\Task;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class TaskController extends Controller
@@ -20,11 +21,12 @@ class TaskController extends Controller
         );
     }
 
-    public function pending(): AnonymousResourceCollection
+    public function pending(Request $request): AnonymousResourceCollection
     {
         return TaskResource::collection(
             auth()->user()->tasks()
                 ->where('status', 'pending')
+                ->when($request->boolean('unsynced'), fn ($q) => $q->unsynced())
                 ->latest()
                 ->paginate(15)
         );
@@ -74,5 +76,11 @@ class TaskController extends Controller
         $this->authorize('delete', $task);
         $task->delete();
         return response()->json(null, 204);
+    }
+    public function markSynced(Task $task, Request $request) {
+        abort_unless($task->user_id === $request->user()->id, 403);
+        $task->update(['synced_at' => now()]);
+        return response()->json(['id' => $task->id, 'synced_at' => $task->synced_at]);
+
     }
 }

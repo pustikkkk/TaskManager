@@ -36,4 +36,7 @@ Route::prefix('v1')->middleware(['auth:sanctum', 'throttle:api-requests'])->grou
     Route::put('tasks/{task}',              [TaskController::class, 'update']);
     Route::patch('tasks/{task}/complete',   [TaskController::class, 'complete']);
     Route::delete('tasks/{task}',           [TaskController::class, 'destroy']);
+    Route::patch('tasks/{task}/synced', [TaskController::class, 'markSynced']);
 });
+
+
