@@ -80,6 +80,7 @@ class TaskController extends Controller
     public function markSynced(Task $task, Request $request) {
         abort_unless($task->user_id === $request->user()->id, 403);
         $task->update(['synced_at' => now()]);
+        $task->save();
         return response()->json(['id' => $task->id, 'synced_at' => $task->synced_at]);
 
     }
