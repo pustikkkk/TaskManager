@@ -13,6 +13,7 @@ class TaskObserver
      */
     public function created(Task $task): void
     {
+        Log::info('OBSERVER FIRED', ['task' => $task->id]);
         $url = config('services.make.url');
         if(!$url) {
             return;
