@@ -13,16 +13,17 @@ class TaskObserver
      */
     public function created(Task $task): void
     {
-Log::info('OBSERVER FIRED', ['task' => $task->id]);
+        Log::info('OBSERVER FIRED', ['task' => $task->id]);
         $url = config('services.make_webhook_url');
         if(!$url) {
             return;
         }
         try {
-            Http::timeout(5)->post($url, [
+            $response = Http::timeout(5)->post($url, [
                 'event' => 'task.created',
                 'task_id' => $task->id,
             ]);
+            Log::info('Make response', ['status' => $response->status(), 'body' => $response->body()]);
         } catch(\Throwable $e) {
             Log::warning('Make webhook failed', ['task' => $task->id, 'error' => $e->getMessage()]);
         }
