@@ -36,7 +36,7 @@ return [
         ],
     ],
     'make' => [
-        'make_webhook_url' => env('MAKE_WEBHOOK_URL'),
+        'webhook_url' => env('MAKE_WEBHOOK_URL'),
     ],
 
 ];

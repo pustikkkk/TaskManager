@@ -14,7 +14,7 @@ class TaskObserver
     public function created(Task $task): void
     {
         Log::info('OBSERVER FIRED', ['task' => $task->id]);
-        $url = config('services.make_webhook_url');
+        $url = config('services.make.webhook_url');
         if(!$url) {
             return;
         }
